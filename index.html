@@ -63,6 +63,17 @@
                 deeplinkButton.style.display = 'inline-block';
             }
         });
+
+        // Check for token in URL params
+        const urlParams = new URLSearchParams(window.location.search);
+        const tokenParam = urlParams.get('token');
+        if (tokenParam) {
+            jwtInput.value = tokenParam;
+            generateButton.disabled = false;
+            const deeplink = `envoid://?token=${encodeURIComponent(tokenParam)}`;
+            deeplinkButton.href = deeplink;
+            deeplinkButton.style.display = 'inline-block';
+        }
     </script>
 </body>
 </html>
